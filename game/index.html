@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet">
+</head>
+<style>
+     * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: rgb(255, 255, 255);
+        display: grid;
+        place-items: center;
+        font-family: 'Tilt Warp', cursive;
+    }
+
+    h1 {
+        margin: 50px 0 50px 0;
+        font-size: 5rem;
+        color: rgb(183, 8, 226);
+        -webkit-text-stroke: .5px rgb(52, 25, 65);
+    }
+
+    input {
+        margin-bottom: 20px;
+        padding: 5px;
+        font-size: 1.2rem;
+    }
+
+    button {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    img {
+        width: 60px;
+    }
+
+    #cont {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .btn {
+
+        font-size: 2rem;
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        margin: 0;
+        background-color: rgb(255, 253, 160);
+        border-radius: 10px;
+
+    }
+
+    #find {
+        font-size: 1.5rem;
+        color: rgb(160, 238, 130);
+        cursor: pointer;
+        padding: 7px;
+        border-radius: 10px;
+        width: 250px;
+        background-color: rgb(36, 0, 34);
+    }
+
+    .btn:hover {
+        background-color: rgb(12, 90, 168);
+    }
+
+    button.enabled {
+        opacity: 1;
+    }
+
+    p {
+        font-size: 2rem;
+    }
+</style>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+
+    <div>
+
+        <p id="userCont">You : <span id="user"></span> </p>
+        <p id="oppNameCont">Opponent : <span id="oppName"></span> </p>
+    </div>
+<br>
+
+<p id="valueCont">You are playing as <span id="value"> </span></p>
+<br>
+<p id="whoseTurn">X's Turn</p>
+
+<div>
+    <p id="enterName">Enter your Name :</p>
+    <input type="text" placeholder="Name" id="name" autocomplete="off">
+</div>
+
+<button id="find">Search for a player</button>
+<img src="loading.gif" id="loading" alt="">
+
+<div id="bigCont">
+    <div id="cont">
+        <button id="btn1" class="btn"> </button>
+        <button id="btn2" class="btn"> </button>
+        <button id="btn3" class="btn"> </button>
+        <button id="btn4" class="btn"> </button>
+        <button id="btn5" class="btn"> </button>
+        <button id="btn6" class="btn"> </button>
+        <button id="btn7" class="btn"> </button>
+        <button id="btn8" class="btn"> </button>
+        <button id="btn9" class="btn"> </button>
+    </div>
+</div>
+
+</body>
+<script>
+
+    document.getElementById("loading").style.display="none"
+    document.getElementById("bigCont").style.display="none"
+    document.getElementById("userCont").style.display="none"
+    document.getElementById("oppNameCont").style.display="none"
+    document.getElementById("valueCont").style.display="none"
+    document.getElementById("whosTurn").style.display="none"
+
+
+    const socket=io();
+    let name;
+
+    document.getElementById("find").addEventListener("click", function(){
+        name=document.getElementById("name").value
+
+        document.getElementById("user").innerText=name
+
+        if(name==null || name==''){
+            alert("enter a name")
+        //     Swal.fire({
+        //     icon: 'error',
+        //     title: 'Oops...',
+        //     text: 'please enter the name',
+        //     footer: '<a href="">Why do I have this issue?</a>'
+        //   })
+        }
+
+        else{
+
+            socket.emit("find",{ name:name })
+
+            document,getElementById("loading").display="block"
+            document,getElementById("find").display=true
+        }
+
+    })
+
+    socket.on("find",(e)=>{
+
+        let allPlayersArray=e.allPlayers
+        console.log(allPlayersArray)
+
+        document.getElementById("userCont").style.display="block"
+        document.getElementById("oppNameCont").style.display="block"
+        document.getElementById("valueCont").style.display="block"
+        document.getElementById("loading").style.display="none"
+        document.getElementById("name").style.display="none"
+        document.getElementById("find").style.display="none"
+        document.getElementById("enterName").style.display="none"
+        document.getElementById("bigCont").style.display="block"
+        document.getElementById("whosTurn").style.display="block"
+        document.getElementById("whosTurn").style.display="X's Turn"
+
+
+        let oppName
+        let value
+
+        const foundObj=allPlayersArray.find(obj=>obj.p1.p1name == `${name}` || obj.p2.p2name == `${name}`);
+        
+
+        foundObj.p1.p1name==`${name}` ? oppName=foundObj.p2.p2name : oppName=foundObj.p1.p1name
+        foundObj.p1.p1name==`${name}` ? value=foundObj.p1.p1value : value=foundObj.p2.p2value
+
+
+        document.getElementById("oppName").innerText=oppName
+        document.getElementById("value").innerText=value
+    })
+</script>
+</html>
