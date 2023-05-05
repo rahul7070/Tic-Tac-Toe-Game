@@ -1,90 +1,214 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background-color: black;
+    color: white;
 }
+
+.topnav {
+    overflow: hidden;
+    background-color: black;
+}
+
+#logo a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#logo a:hover {
+    background-color: #333;
+}
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* height: 100vh; */
+    height: 90vh;
+    /* box-shadow: 0 2px 5px  rgba(255, 255, 255, 0.2); */
+    margin-left:-150px;
+
 }
+
 .form {
-    background-color: #ee5bda;
+    background-color: black;
+    color: white;
     padding: 30px;
-    
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px  rgba(255, 255, 255, 0.8);
     text-align: center;
     width: 400px;
     display: none;
+    margin-right: 30px;
+    /* border: 2px solid red; */
 }
+
+#login-form{
+    margin-left:-350px;
+
+}
+
 .form.active {
     display: block;
-}
+}   
+
 .form h2 {
     margin-top: 0;
     margin-bottom: 20px;
+    font-size: 24px;
+    line-height: 1.2;
 }
-.form input[type="text"], .form input[type="password"], .form input[type="email"] {
+
+.form input[type="text"],
+.form input[type="password"],
+.form input[type="email"] {
     width: 100%;
-    padding: 12px 20px;
+    padding: 12px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 4px;
     box-sizing: border-box;
-}
-.form button {
-    background-color: #b90b85;
+    font-size: 16px;
+    line-height: 1.5;
     color: white;
+    background-color: black;
+}
+
+.form input[type="text"]::placeholder,
+.form input[type="password"]::placeholder,
+.form input[type="email"]::placeholder {
+    color: #ccc;
+    background-color: black ;
+}
+
+.form button {
+    background-color: black;
+    color: white;
+    font-weight: bolder;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
+    font-size: 16px;
+    line-height: 1.5;
+    text-transform: uppercase;
 }
+
 .form button:hover {
-    background-color: #a719b4;
+    background-color: #333;
 }
+
 .form .toggle {
     margin-top: 20px;
     text-align: center;
     cursor: pointer;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
 }
+
 .form .toggle:hover {
-    color: #0A2647;
+    color: #ccc;
 }
+
 .form .error-message {
     color: red;
     margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.2;
 }
 
-#main{
+#main {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
-#left{
+
+
+#left {
     width: 47%;
-    /* display: block; */
-    margin-right: 10%;
+    margin-right: 3%;
 }
-#left img{
+
+#left img {
     width: 100%;
     margin-top: 17%;
-    margin-left: 5%;
 }
+
+#span1 {
+    color: green;
+    font-weight: bolder;
+}
+
+#span2 {
+    color: red;
+    font-weight: bolder;
+}
+
+#login-toggle {
+    color: white;
+}
+
+#checkbox {
+
+    position: relative; 
+    /* left: auto; */
+    margin-left:-270px  ;
+    /* width: 100px; */
+    /* height: 120px; */
+    /* border: 3px solid blue; */
+}
+  
+
+@media screen and (max-width: 768px) {
+    .form {
+        width: 100%;
+        max-width: 400px;
+    }
+    #left {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    .main{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+
+}
+
 
 @media screen and (max-width: 600px) {
-    #main{
-        flex-direction: column;
+    .form {
+        padding: 20px;
+    }
+    .form h2 {
+        font-size: 20px;
+    }
+    .form input[type="text"],
+    .form input[type="password"],
+    .form input[type="email"] {
+        font-size: 14px;
+    }
+    .form button {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+    .form .toggle,
+    .form .error-message {
+        font-size: 14px;
+    }
+    #left img {
+        margin-top: 10%;
+    }
+    .main{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
     }
 }
 
-
-
-@media screen and (max-width: 950px) {
-    #main{
-        flex-direction: column;
-    }
-}
