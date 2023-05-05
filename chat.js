@@ -30,7 +30,7 @@ socket.on('errorMessage',(msg)=>{
 function maxlimit(){
     window.location.href = 'error.html'
 }
-// Sending message
+
 
 chatForm.addEventListener("submit",(e)=>{
     e.preventDefault()
