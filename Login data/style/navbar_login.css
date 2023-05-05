@@ -4,7 +4,7 @@ body {
 }
 
 .topnav {
-  background-color: #a921df;
+  background-color: black;
 }
 
 #background {
@@ -15,6 +15,7 @@ body {
 
 #background #con a {
   font-size: 20px;
+  font-weight: bolder;
 }
 
 .topnav #background #con {
@@ -33,6 +34,8 @@ body {
   float: right;
   /* display: block; */
   color: #f2f2f2;
+  font-weight: bolder;
+
   text-align: center;
   padding: 10px 16px;
   text-decoration: none;
