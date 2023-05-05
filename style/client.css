@@ -1,0 +1,19 @@
+#gameboard{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    border: 1px solid;
+    width: 300px;
+    height: 300px;
+}
+.cell{
+    border: 1px solid;
+    cursor: pointer;
+    text-align: center;
+}
+#table{
+   border: 1px solid; 
+}
+#table th,tr,td{
+    border: 1px solid;
+    width: 60px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tic-tac-toe</title>
+    <link rel="stylesheet" href="style/client.css">
+</head>
+<body>
+    <div id="gameboard">
+        <div id="cell-1" class="cell"></div>
+        <div id="cell-2" class="cell"></div>
+        <div id="cell-3" class="cell"></div>
+        <div id="cell-4" class="cell"></div>
+        <div id="cell-5" class="cell"></div>
+        <div id="cell-6" class="cell"></div>
+        <div id="cell-7" class="cell"></div>
+        <div id="cell-8" class="cell"></div>
+        <div id="cell-9" class="cell"></div> 
+    </div>
+
+    <h1 id="winner"></h1>
+
+    <div id="lederboard">
+        <table id="table">
+            <tr>
+                <th>game</th>
+                <th id="player1"></th>
+                <th id="player2"></th>
+            </tr>
+            <tr>
+                <td>game1</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>game2</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>game2</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script src="script/client.js"></script>
+</html>
