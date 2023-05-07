@@ -17,18 +17,31 @@ let gamestatus={
     board:matrix,
     nextplayer:"",
     win:null,
-    winnerdata:[]
+    winnerdata:[],
+    winningline:[]
    }
 
+   function rejectsameplayer(data){
+    if(gamestatus.player.length==0){
+        return true
+    }
+    else{
+    for(let i=0;i<gamestatus.player.length;i++){
+        if(gamestatus.player[i].name==data.username){
+            return false
+        }
+        }
+    }
+     return true
+   }
 
 io.on("connection",(socket)=>{
     console.log("player connected to"+socket.id)
-
+     
     socket.on("users",(data)=>{
         console.log(data)
-
        
-        if(gamestatus.player.length<2){
+        if(gamestatus.player.length<2 &&rejectsameplayer(data)){
         gamestatus.player.push({
             id:socket.id,
             name:data.username,
@@ -108,23 +121,26 @@ io.on("connection",(socket)=>{
 
         for(let i=0;i<3;i++){
             if((gamestatus.board[i][0]==gamestatus.board[i][1] && gamestatus.board[i][1]==gamestatus.board[i][2]) && gamestatus.board[i][0] !=null  && gamestatus.board[i][1] !=null && gamestatus.board[i][1] !=null){
+               gamestatus.winningline.push([i,0],[i,1],[i,2])
                 return true
             }
         }
         console.log()
         for(let i=0;i<3;i++){
             if((gamestatus.board[0][i]==gamestatus.board[1][i] && gamestatus.board[1][i]== gamestatus.board[2][i]) && gamestatus.board[0][i] !=null  && gamestatus.board[1][i] !=null && gamestatus.board[2][i] !=null){
+                gamestatus.winningline.push([0,i],[1,i],[2,i])
                 return true
             }
         }
       
          if((gamestatus.board[0][0]==gamestatus.board[1][1] &&gamestatus.board[1][1]== gamestatus.board[2][2]) 
          && gamestatus.board[0][0]!==null && gamestatus.board[1][1]!==null && gamestatus.board[2][2]!==null){
+            gamestatus.winningline.push([0,0],[1,1],[2,2])
             return true
          }
     
          if((gamestatus.board[0][2]==gamestatus.board[1][1] &&gamestatus.board[1][1]== gamestatus.board[2][0]) && gamestatus.board[0][2]!==null && gamestatus.board[1][1]!==null && gamestatus.board[2][0]!==null){
-
+            gamestatus.winningline.push([0,2],[1,1],[2,0])
             return true
          }
 
@@ -163,13 +179,15 @@ io.on("connection",(socket)=>{
     })
 
     socket.on("newround",(data)=>{
+        console.log(data)
         gamestatus.win=data.win
+        gamestatus.winningline=data.winningline
         // io.emit("game",gamestatus)
     })
-    // console.log(gamestatus,"/////////")
+    
 
      chat(socket,io)
-
+    
 })
 
 

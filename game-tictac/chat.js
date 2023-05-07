@@ -4,6 +4,7 @@ const { userJoin, getRoomUsers, getCurrentUser, userLeave } = require("./msg/use
 const formateMessage = require("./msg/messages");
 
 let chat=(socket,io)=>{
+  
     console.log("One user has joined");
 
     socket.on("joinRoom", ({ username, room }) => {
@@ -14,16 +15,16 @@ let chat=(socket,io)=>{
      
         socket.join(user.room);
     
-        socket.emit(
-          "message",
-          formateMessage("Masai Server", "Welcome to masai Server")
-        );
+        // socket.emit(
+        //   "message",
+        //   formateMessage("Masai Server", "Welcome to masai Server")
+        // );
 
         socket.broadcast
           .to(user.room)
           .emit(
             "message",
-            formateMessage("Masai Server", `${username} has joined the chat`)
+            formateMessage("", `${username} has joined`)
           );
     
         io.to(room).emit("roomUsers", {

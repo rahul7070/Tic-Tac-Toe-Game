@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tic-tac-toe</title>
     <link rel="stylesheet" href="style/client.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?   family=Open+Sans:wght@300&display=swap"     rel="stylesheet">
 </head>
 <body>
     <div id="heading-bar">
@@ -18,7 +21,7 @@
         <!-- leader board -->
         <div id="leaderboard">
             <div id="user-display">
-                <div>
+                <div id="userdisplay-img-div">
                     <img src="images/useimg.png" alt="">
                 </div>
                 <div id="user-display-name"></div>
@@ -51,6 +54,10 @@
 
         <!-- game......... -->
         <div id="game-section">
+            <div id="message-box">
+                <h1 id="winner"></h1>
+            </div>
+            
             <div id="gameboard">
                 <div id="cell-1" class="cell"></div>
                 <div id="cell-2" class="cell"></div>
@@ -63,7 +70,6 @@
                 <div id="cell-9" class="cell"></div> 
             </div>
 
-            <h1 id="winner"></h1>
              <h1 id="overallwinner"></h1>
         </div>
         
@@ -96,8 +102,7 @@
        </div>
 
     </div>
-
-
+    
 </body> 
 <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 <script src="script/client.js"></script>

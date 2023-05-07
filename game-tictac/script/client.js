@@ -20,6 +20,7 @@ let cell6=document.getElementById("cell-6")
 let cell7=document.getElementById("cell-7")
 let cell8=document.getElementById("cell-8")
 let cell9=document.getElementById("cell-9")
+ 
 
 let player1=document.getElementById("player1")
 let player2=document.getElementById("player2")
@@ -32,6 +33,15 @@ let r2p1=document.getElementById("r2-p1")
 let r2p2=document.getElementById("r2-p2")
 let r3p1=document.getElementById("r3-p1")
 let r3p2=document.getElementById("r3-p2")
+
+function addcolor(cell){
+    if(cell.innerHTML=="x"){
+        cell.classList.add("cell-red")
+    }
+    else if(cell.innerHTML=="o"){
+        cell.classList.add("cell-blue")
+    }
+}
  
 socket.on("gameBegins",(message)=>{
     console.log(message)
@@ -48,7 +58,47 @@ socket.on("game",(data)=>{
     console.log(data)
         player1.innerText=data.player[0].name
         player2.innerText=data.player[1].name
-        
+      
+        // updating cell innerhtml..........
+        for(let j=0;j<data.player.length;j++){
+            if(data.board[0][0]==data.player[j].name){
+                cell1.innerHTML=data.player[j].symbol
+                addcolor(cell1)
+            }
+            if(data.board[0][1]==data.player[j].name){
+                cell2.innerHTML=data.player[j].symbol
+                addcolor(cell2)
+            }
+            if(data.board[0][2]==data.player[j].name){
+                cell3.innerHTML=data.player[j].symbol
+                addcolor(cell3)
+            }
+            if(data.board[1][0]==data.player[j].name){
+                cell4.innerHTML=data.player[j].symbol
+                addcolor(cell4)
+            }
+            if(data.board[1][1]==data.player[j].name){
+                cell5.innerHTML=data.player[j].symbol
+                addcolor(cell5)
+            }
+            if(data.board[1][2]==data.player[j].name){
+                cell6.innerHTML=data.player[j].symbol
+                addcolor(cell6)
+            }
+            if(data.board[2][0]==data.player[j].name){
+                cell7.innerHTML=data.player[j].symbol
+                addcolor(cell7)
+            }
+            if(data.board[2][1]==data.player[j].name){
+                cell8.innerHTML=data.player[j].symbol
+                addcolor(cell8)
+            }
+            if(data.board[2][2]==data.player[j].name){
+                cell9.innerHTML=data.player[j].symbol
+                addcolor(cell9)
+            }
+            
+        }
        
         if(data.win){
             // updating leaderboard.....
@@ -64,7 +114,7 @@ socket.on("game",(data)=>{
             if(data.winnerdata[0]=="draw"){
                 r1p1.innerHTML="draw"
                 r1p2.innerHTML="draw"
-            }
+            } 
            }
            if(data.winnerdata[1]){
             if(data.winnerdata[1]==data.player[0].name){
@@ -95,7 +145,7 @@ socket.on("game",(data)=>{
             }
            }
             
-           // checking who is winned most in total rounds
+           // checking who is overall winner in total rounds
            if(data.winnerdata.length==3){
               let obj={}
               for(let i=0;i<data.winnerdata.length;i++){
@@ -127,55 +177,63 @@ socket.on("game",(data)=>{
             // showing message if player win....
             if(data.win!=="draw"){
             
+            //   adding colour to the winning path
+             data.winningline.forEach((ele)=>{
+                if(ele[0]==0 && ele[1]==0){
+                    cell1.classList.add("cell-path")
+                }
+                if(ele[0]==0 && ele[1]==1){
+                    cell2.classList.add("cell-path")
+                }
+                if(ele[0]==0 && ele[1]==2){
+                    cell3.classList.add("cell-path")
+                }
+                if(ele[0]==1 && ele[1]==0){
+                    cell4.classList.add("cell-path")
+                }
+                if(ele[0]==1 && ele[1]==1){
+                    cell5.classList.add("cell-path")
+                }
+                if(ele[0]==1 && ele[1]==2){
+                    cell6.classList.add("cell-path")
+                }
+                if(ele[0]==2 && ele[1]==0){
+                    cell7.classList.add("cell-path")
+                }
+                if(ele[0]==2 && ele[1]==1){
+                    cell8.classList.add("cell-path")
+                }
+                if(ele[0]==2 && ele[1]==2){
+                    cell9.classList.add("cell-path")
+                }
+                
+             })
             document.getElementById("winner").innerText=`user ${data.win} win the game`
             }
             else{
                 document.getElementById("winner").innerText="draw..."   
             }
             data.win=null
+            data.winningline=[]
             socket.emit("newround",data)
             const box = document.querySelectorAll('.cell');
+            box.forEach((box)=>{
+                addcolor(box)
+            })
             setTimeout(()=>{
             box.forEach((box)=>{
                 box.innerHTML=null
+                box.classList.remove("cell-red")
+                box.classList.remove("cell-blue")
+                box.classList.remove("cell-path")
             })
             document.getElementById("winner").innerText=null
+
             
           },5000)
           
         }
 
-        for(let j=0;j<data.player.length;j++){
-            if(data.board[0][0]==data.player[j].name){
-                cell1.innerHTML=data.player[j].symbol
-            }
-            if(data.board[0][1]==data.player[j].name){
-                cell2.innerHTML=data.player[j].symbol
-            }
-            if(data.board[0][2]==data.player[j].name){
-                cell3.innerHTML=data.player[j].symbol
-            }
-            if(data.board[1][0]==data.player[j].name){
-                cell4.innerHTML=data.player[j].symbol
-            }
-            if(data.board[1][1]==data.player[j].name){
-                cell5.innerHTML=data.player[j].symbol
-            }
-            if(data.board[1][2]==data.player[j].name){
-                cell6.innerHTML=data.player[j].symbol
-            }
-            if(data.board[2][0]==data.player[j].name){
-                cell7.innerHTML=data.player[j].symbol
-            }
-            if(data.board[2][1]==data.player[j].name){
-                cell8.innerHTML=data.player[j].symbol
-            }
-            if(data.board[2][2]==data.player[j].name){
-                cell9.innerHTML=data.player[j].symbol
-            }
-            
-        }
-        
       console.log(socket.id)
     let isnext=false
     if(data.nextplayer==username){
@@ -218,7 +276,7 @@ socket.on("game",(data)=>{
    
 socket.emit("joinRoom",({username,room}));
 socket.on("message",(message)=>{
-
+    console.log(message)
     outputMessage(message);
  
 })
@@ -250,50 +308,49 @@ chatForm.addEventListener("submit",(e)=>{
 
 })
 
-socket.on("roomUsers",({room,users})=>{
+// socket.on("roomUsers",({room,users})=>{
 
-    roomName.innerText= room;
+//     roomName.innerText= room;
 
-outputRoomUsers(users)
+// outputRoomUsers(users)
 
-})
+// })
 
 
-function outputRoomUsers(users){
+// function outputRoomUsers(users){
     
-    userList.innerHTML = '';
+//     userList.innerHTML = '';
 
-    users.forEach(user => {
-        const li = document.createElement("li");
-        li.innerText = user.username;
-        userList.appendChild(li)
-    });
-}
+//     users.forEach(user => {
+//         const li = document.createElement("li");
+//         li.innerText = user.username;
+//         userList.appendChild(li)
+//     });
+// }
 
 
 function outputMessage(message){
 
-    const div = document.createElement("div");
-    div.classList.add("message");
+    const msgbox = document.createElement("div");
+     msgbox.setAttribute("class","msgbox")
+    let msg=document.createElement("div")
+    msg.setAttribute("class","msg")
+    let text=document.createElement("div")
+    text.setAttribute("class","text")
+    text.innerHTML=message.text
+    let time=document.createElement("p")
+    time.setAttribute("class","time")
+    time.innerText=message.time
+    msg.append(text,time)
 
-    const p = document.createElement("p");
-
-    p.classList.add("meta");
-
-    p.innerText = message.username;
-
-    p.innerHTML += `<span>${message.time}</span>`;
-
-    div.appendChild(p);
-
-    const para = document.createElement("p");
-
-    para.classList.add("text");
-    para.innerText = message.text;
-
-
-    div.appendChild(para);
-    chatMessages.appendChild(div);
+    if(message.username==username){
+        msgbox.classList.add("right-side")
+    }
+    else{
+        msgbox.classList.add("left-side")
+    }
     
-
+    msgbox.append(msg)
+    chatMessages.appendChild(msgbox);
+    
 }
