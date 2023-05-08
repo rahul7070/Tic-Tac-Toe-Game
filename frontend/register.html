@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./style/login.css">
 </head>
+
 <body>
-    <div>
-        <div>REGISTER</div>
-       <div>
-        <label  for="email">e-mail</label>
-        <input id="email" type="text" placeholder="email">
-       </div>
-       <div>
-        <label for="password">password</label>
-        <input id="password" type="password" placeholder="password">
-       </div>
-       <div>
-         <button id="register">REGISTER</button>
+    <div id="form">
+
+        <div id="left">
+            <img class="leftalimg" src="./images/new_logo1-removebg-preview.png" alt="">
         </div>
-        <div><h4 id="message"></h4></div>
-     </div>
-    
+        <div id="right">
+            <div>REGISTER</div>
+            <br><br>
+            <div>
+                <label for="email">e-mail</label>
+                <input id="email" type="text" placeholder="email">
+            </div>
+            <br>
+            <div>
+                <label for="password">password</label>
+                <input id="password" type="password" placeholder="password">
+            </div>
+            <br><br>
+            <div>
+                <button id="register">REGISTER</button>
+            </div>
+            <div>
+                <h4 id="message"></h4>
+            </div>
+        </div>
+    </div>
+
 </body>
 <script src="script/register.js"></script>
+
 </html>
