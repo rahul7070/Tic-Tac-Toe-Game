@@ -1,4 +1,4 @@
-let socket=io("http://localhost:8600/",{transports:["websocket"]})
+let socket=io("http://localhost:8500/",{transports:["websocket"]})
 
 const urlParams=new  URLSearchParams(window.location.search)
 let username=urlParams.get("username")
