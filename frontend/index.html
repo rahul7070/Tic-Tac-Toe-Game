@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tic-tac-toe</title>
+    <link rel="stylesheet" href="./style/login.css">
 </head>
+
 <body>
     <div id="form">
-        <div>LOG IN</div>
-       <div>
-        <label for="email">e-mail</label>
-        <input id="email" type="text" placeholder="email">
-       </div>
-       <div>
-        <label for="password">password</label>
-        <input id="password" type="password" placeholder="password">
-       </div>
-       <div>
-         <button id="login">LOG IN</button>
+
+        <div id="left">
+            <img class="leftalimg" src="./images/new_logo1-removebg-preview.png" alt="">
         </div>
-        <div>
-            <h5>are you a new user? then <a href="register.html">click</a>to register</h5>
+        <div id="right">
+            <div>LOG IN</div>
+            <br><br>
+            <div>
+                <label for="email">e-mail</label>
+                <input id="email" type="text" placeholder="email">
+            </div>
+            <br>
+            <div>
+                <label for="password">password</label>
+                <input id="password" type="password" placeholder="password">
+            </div>
+            <br><br>
+            <div>
+                <button id="login">LOG IN</button>
+            </div>
+            <div id="rohit">
+                <h5>are you a new user? then <a href="register.html"> click </a> to register</h5>
+            </div>
+
+            <h2 id="login-status"></h2>
         </div>
 
-        <h2 id="login-status"></h2>
-     </div>
-    
+
+    </div>
+
 </body>
 <script src="script/index.js"></script>
+
 </html>
