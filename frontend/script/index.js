@@ -1,5 +1,5 @@
 
-let url="http://localhost:8500/user/login"
+let url="https://tictactoe-5oet.onrender.com/user/login"
 
 let statusTag = document.getElementById("login-status")
 
