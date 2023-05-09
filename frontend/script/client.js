@@ -1,4 +1,4 @@
-let socket=io("https://tictactoe-5oet.onrender.com/",{transports:["websocket"]})
+let socket=io("https://tic-tac-toe-deploygame.onrender.com/",{transports:["websocket"]})
 
 // http://localhost:8600/
 

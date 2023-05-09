@@ -1,5 +1,5 @@
 
-let url="https://tictactoe-5oet.onrender.com/user/register"
+let url="https://tic-tac-toe-deploygame.onrender.com/user/register"
 
 let email=document.getElementById("email")
 let password=document.getElementById("password")
