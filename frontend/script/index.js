@@ -1,5 +1,5 @@
 
-let url="https://tictactoe-5oet.onrender.com/user/login"
+let url="https://tic-tac-toe-deploygame.onrender.com/user/login"
 
 let statusTag = document.getElementById("login-status")
 
