@@ -235,3 +235,17 @@ margin-right: 2px;
     margin-right: 5px;
 }
 
+.restartbtn{
+    margin: 20px;
+    padding: 10px;
+    background-color: #0e1f3c;
+    color: aliceblue;
+    border-radius: 5px;
+    font-size: large;
+}
+.restartbtn:hover{
+    background-color: grey;
+    color: #0a0a0a;
+    font-size: large;
+}
+
