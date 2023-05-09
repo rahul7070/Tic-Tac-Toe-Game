@@ -78,9 +78,12 @@ body {
         width: 90%;
         padding: 8px;
         margin-top: 4px;
-        border: 1px solid #ccc;
+        /* border: 1px solid #ccc; */
         border-radius: 4px;
         margin-left: 20px;
+        background:none;
+        color: white;
+        font-weight: bolder;
     }
     
     #right button {
@@ -116,6 +119,6 @@ body {
         color:red;
         /* font-size: 20px; */
         font-weight: bolder;
-        border: 3px soild red;
+        /* border: 3px soild red; */
     }
     
