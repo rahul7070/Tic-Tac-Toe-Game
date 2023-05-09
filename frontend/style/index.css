@@ -173,4 +173,8 @@
   .description br {
     line-height: 20px;
   }
+
+  #login-status{
+    text-align: center;
+  }
   
